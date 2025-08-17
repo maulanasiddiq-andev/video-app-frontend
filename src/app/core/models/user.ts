@@ -1,11 +1,10 @@
-export class User {
+import { BaseModel } from "./base-model";
+
+export class User extends BaseModel {
     id: string;
     name: string;
     username: string;
     email: string;
-    recordStatus: string;
     profileImage: string;
     videosCount: number;
-    createdAt: Date;
-    updatedAt: Date;
 }
