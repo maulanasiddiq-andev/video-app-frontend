@@ -1,1 +1,26 @@
-<p>video-list works!</p>
+<div class="row m-0 gy-2 scrollable-container py-2" (scroll)="onScroll($event)">
+    <div class="col-4 px-1" *ngFor="let video of videos">
+        <div class="w-100">
+            <img 
+                class="video-img" 
+                [src]="video.image != null ? baseUrl + video.image : 'images/img-placeholder.jpg'" 
+                alt="video-image">
+        </div>
+        <div class="row m-0 mt-2">
+            <div class="col-2 p-0">
+                <img 
+                    class="profile-img" 
+                    [src]="video.user.profileImage != null ? baseUrl + video.user.profileImage : 'images/profile-img-placeholder.png'" 
+                    alt="">
+            </div>
+            <div class="col p-0 ps-2">
+                <p class="m-0 video-title">{{ video.title }}</p>
+                <p class="m-0">{{ video.user.name }}</p>
+                <p class="m-0">{{ video.historiesCount }}x ditonton | {{ video.createdAt | date: 'dd/MM/yyyy' }}</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isLoadingMore" class="col-12 py-3 d-flex justify-content-center align-items-center">
+        <div class="loader"></div>
+    </div>
+</div>

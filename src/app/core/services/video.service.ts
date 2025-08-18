@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
@@ -16,7 +16,13 @@ export class VideoService {
     private http: HttpClient
   ) { }
 
-  getVideos(): Observable<BaseResponse<SearchResponse<Video>>> {
-    return this.http.get(this.url).pipe(map((response: BaseResponse<SearchResponse<Video>>) => response))
+  getVideos(params: any): Observable<BaseResponse<SearchResponse<Video>>> {
+    let queryParams = new HttpParams();
+
+    for (const key of Object.keys(params)) {
+      queryParams = queryParams.set(key, params[key].toString())
+    }
+
+    return this.http.get(this.url, { params: queryParams }).pipe(map((response: BaseResponse<SearchResponse<Video>>) => response))
   }
 }
