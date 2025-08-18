@@ -26,10 +26,10 @@
     </ng-container>
     <ng-template #loadingAnimation>
         <div class="col-12 h-100 d-flex justify-content-center align-items-center">
-            <div class="loader"></div>
+            <app-loading></app-loading>
         </div>
     </ng-template>
     <div *ngIf="isLoadingMore" class="col-12 py-3 d-flex justify-content-center align-items-center">
-        <div class="loader"></div>
+        <app-loading></app-loading>
     </div>
 </div>

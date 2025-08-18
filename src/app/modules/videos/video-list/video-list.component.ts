@@ -3,10 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Video } from 'src/app/core/models/video';
 import { VideoService } from 'src/app/core/services/video.service';
 import { environment } from 'src/environment/environment';
+import { LoadingComponent } from "src/app/core/shared/loading/loading.component";
 
 @Component({
   selector: 'app-video-list',
-  imports: [NgFor, DatePipe, NgIf],
+  imports: [NgFor, DatePipe, NgIf, LoadingComponent],
   templateUrl: './video-list.component.html',
   styleUrl: './video-list.component.scss'
 })
@@ -58,7 +59,7 @@ export class VideoListComponent implements OnInit {
 
   onScroll(event: any) {
     const element = event.target;
-    if (element.scrollHeight - element.scrollTop == element.clientHeight) {
+    if (Math.round(element.scrollHeight - element.scrollTop) == element.clientHeight) {
       if (this.isLoading || this.isLoadingMore) return;
 
       if (this.hasNextPage) {
